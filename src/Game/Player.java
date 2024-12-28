@@ -1,10 +1,10 @@
 package Game;
 
-public class Player {
+public class Player implements Comparable<Player> {
     private String name;
     public Hand hand;
-    public boolean has21 = false;
-    float score = 0;
+    private boolean has21 = false;
+    private float score = 0;
 
     public Player(String name) {
         setName(name);
@@ -23,7 +23,20 @@ public class Player {
         return this.score;
     }
 
-    public void getScore(int score) {
+    public void setScore(float score) {
         this.score = score;
+    }
+
+    public boolean getHas21() {
+        return this.has21;
+    }
+
+    public void setHas21(boolean has21) {
+        this.has21 = has21;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return Float.compare(o.score, this.score);
     }
 }

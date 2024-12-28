@@ -51,6 +51,7 @@ public class Hand implements HandBagInterface {
                 return false;
             }
             cards.clear();
+            sizeOfHand = 0;
             return true;
         }
         catch(Exception e) {
@@ -96,12 +97,12 @@ public class Hand implements HandBagInterface {
             if(card.getSuit().equals(suit)) {
                 if(card.getRank().equals("Ace")) {
                     int checkVal = count + card.getValue();
-                    if ((count >= 21 || checkVal > 21) && card.getValue() == 10) {
+                    if ((count >= 21 || checkVal > 21) && card.getValue() == 11) {
                         card.setValue(1);
                     }
-                    if (count <= 11 && card.getValue() == 1)
+                    if (count <= 10 && card.getValue() == 1)
                     {
-                        card.setValue(10);
+                        card.setValue(11);
                     }
                 }
                 count += card.getValue();

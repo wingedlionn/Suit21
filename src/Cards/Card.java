@@ -45,7 +45,8 @@ public class Card {
             case ("Seven") -> 7;
             case ("Eight") -> 8;
             case ("Nine") -> 9;
-            case ("Ten"), ("Ace"), ("Jack"), ("King"), ("Queen") -> 10;
+            case ("Ten"), ("Jack"), ("King"), ("Queen") -> 10;
+            case ("Ace") -> 11;
             default -> throw new UnsupportedOperationException("Invalid rank: " + newRank);
         };
     }

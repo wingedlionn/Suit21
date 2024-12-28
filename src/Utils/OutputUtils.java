@@ -76,6 +76,16 @@ public class OutputUtils {
         }
     }
 
+    public static void printLeaderboard(Player[] players) {
+        String leaderBoard = "Results:";
+
+        for (int i = 0; i < players.length; i++) {
+            leaderBoard = String.format("%s\n%d: %s - %.2f point(s)", leaderBoard, i+1, players[i].getName(), players[i].getScore());
+        }
+        System.out.println(leaderBoard);
+        System.out.println("Congratulations!");
+    }
+
 
     private static final String title =
             """
