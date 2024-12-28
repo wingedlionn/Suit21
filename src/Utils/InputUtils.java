@@ -93,11 +93,11 @@ public class InputUtils {
         }
     }
 
-    public static int getNumRounds() {
+    public static int getNumGames() {
         while (true) {
             int input = getInt();
             if(input <= 0) {
-                System.out.println("Invalid number of rounds. Please enter a number greater than 0:");
+                System.out.println("Invalid number of games. Please enter a number greater than 0:");
             }
             else {
                 return input;

@@ -45,6 +45,19 @@ public class Hand implements HandBagInterface {
         }
     }
 
+    public boolean clear() {
+        try {
+            if(cards.isEmpty()) {
+                return false;
+            }
+            cards.clear();
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+
     public Card getCardAtIndex(int index) {
         try {
             if (index >= sizeOfHand || index < 0) {

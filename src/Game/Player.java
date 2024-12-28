@@ -3,8 +3,8 @@ package Game;
 public class Player {
     private String name;
     public Hand hand;
-    int totalScore = 0;
-    int roundScore = 0;
+    public boolean has21 = false;
+    float score = 0;
 
     public Player(String name) {
         setName(name);
@@ -19,19 +19,11 @@ public class Player {
         this.name = name;
     }
 
-    public int getTotalScore() {
-        return this.totalScore;
+    public float getScore() {
+        return this.score;
     }
 
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
-    }
-
-    public int getRoundScore() {
-        return roundScore;
-    }
-
-    public void setRoundScore(int roundScore) {
-        this.roundScore = roundScore;
+    public void getScore(int score) {
+        this.score = score;
     }
 }

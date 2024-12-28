@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         GameLogic.suits = CardAttributes.returnSuits();
-        int numberOfPlayers, numberOfRounds, currentRound = 0;
+        int numberOfPlayers = 0;
         OutputUtils.printTitle();
         System.out.println("Welcome! How many players do you have?\nYou must select a number between 2 and 6:");
         numberOfPlayers = InputUtils.getNumPlayers();
@@ -20,11 +20,10 @@ public class Main {
 
         System.out.println("Wonderful! How many rounds would you like to play?");
 
-        numberOfRounds = InputUtils.getNumRounds();
+        GameLogic.numberOfGames = InputUtils.getNumGames();
+
 
         System.out.println("Let's begin!\n");
-
-
 
         GameLogic.playGame();
 

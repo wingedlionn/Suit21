@@ -21,6 +21,11 @@ public interface HandBagInterface {
     @return - (boolean) true if empty, false if contains at least one card
      */
 
+    public boolean clear();
+    /* Checks if there are cards in the hand, and removes all present.
+
+    @return - (boolean) true if successful, false if already empty.
+     */
     public Card getCardAtIndex(int index);
     /* checks for a card at a certain position, returns card if possible
 
