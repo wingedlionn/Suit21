@@ -27,8 +27,12 @@ public class OutputUtils {
         System.out.printf("\n\n%s's turn\n\n", playerName);
     }
 
-    public static void printCurrentHand(String val) {
-        System.out.printf("Your current hand: \n%s\n", val);
+    public static void printCurrentHand(String val, boolean redraw) {
+        if (redraw) {
+            System.out.printf("Your new hand: \n%s\n", val);
+        } else {
+            System.out.printf("Your current hand: \n%s\n", val);
+        }
     }
 
     public static void printTotalsPerSuit(int[] vals) {

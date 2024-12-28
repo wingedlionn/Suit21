@@ -45,6 +45,29 @@ public class Hand implements HandBagInterface {
         }
     }
 
+    public Card getCardAtIndex(int index) {
+        try {
+            if (index >= sizeOfHand || index < 0) {
+                return null;
+            }
+            return cards.get(index);
+        }
+        catch(Exception e) {
+            return null;
+        }
+    }
+
+    public boolean removeCardAtIndex(int index) {
+        try {
+            Card c = getCardAtIndex(index);
+            remove(c);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+
     public boolean remove(Card card) {
         boolean removed = cards.removeIf(c -> c.equals(card));
         if(removed) {

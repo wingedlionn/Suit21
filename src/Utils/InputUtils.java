@@ -20,6 +20,56 @@ public class InputUtils {
         }
     }
 
+    public static String getCardSwap() {
+        while (true) {
+            String input = getString();
+            if(input.isEmpty()) {
+                System.out.println("You must select either yes (y) or no (n). Please try again.");
+            }
+            else {
+                input = input.toLowerCase().replaceAll(" ", "");
+
+                if(input.equals("y")) {
+                    System.out.println("Which card would you like to swap? (A, B, C, D, E)");
+                    String card = getString();
+                    while (true) {
+                        if (card.isEmpty()) {
+                            System.out.println("You must select a card.");
+                        } else {
+                            switch (card.toUpperCase()) {
+                                case "A": return "A";
+                                case "B": return "B";
+                                case "C": return "C";
+                                case "D": return "D";
+                                case "E": return "E";
+                                default:
+                                    System.out.println("You must select a card.");
+                                    break;
+                            };
+                        }
+                    }
+                }
+                else if(input.equals("n")) {
+                    return null;
+                }
+                else {
+                    System.out.println("You must select either yes (y) or no (n). Please try again.");
+                }
+            }
+        }
+    }
+
+    public static void awaitInput(boolean message) {
+
+            if (message) {
+                System.out.println("Press enter to continue.");
+            }
+            String in = getString();
+            if (in.isEmpty()) {
+                return;
+            }
+    }
+
     private static int getInt() {
         while (true) {
             try {
