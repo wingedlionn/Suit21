@@ -1,5 +1,7 @@
 package Cards;
 
+import java.util.ArrayList;
+
 public interface HandBagInterface {
 
     public int getSize();
@@ -13,6 +15,12 @@ public interface HandBagInterface {
 
     @param (Card) newCard - card to be added to hand
     @return - (boolean) true if card added successfully, false if no space
+     */
+
+    public ArrayList<Card> getCards();
+    /* Returns the cards currently in the hand
+
+    @return - (ArrayList<Card>) Cards currently in the hand
      */
 
     public boolean isEmpty();
@@ -30,6 +38,12 @@ public interface HandBagInterface {
     /* checks for a card at a certain position, returns card if possible
 
     @return - (Card) the card at the specified index. null if none found.
+     */
+
+    public int getIndexOfCard(Card card);
+    /* checks for a card in the hand, returns its position
+
+    @return - (int) index of specified card. -1 if not found
      */
 
     public boolean remove(Card card);

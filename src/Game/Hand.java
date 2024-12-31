@@ -19,6 +19,10 @@ public class Hand implements HandBagInterface {
         return sizeOfHand;
     }
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
     public boolean isEmpty() {
         return sizeOfHand == 0;
     }
@@ -68,6 +72,19 @@ public class Hand implements HandBagInterface {
         }
         catch(Exception e) {
             return null;
+        }
+    }
+
+    public int getIndexOfCard(Card card) {
+        try {
+            for (int i = 0; i < sizeOfHand; i++) {
+                if (cards.get(i).equals(card)) {
+                    return i;
+                }
+            }
+            throw new Exception();
+        } catch (Exception e) {
+            return -1;
         }
     }
 

@@ -1,6 +1,8 @@
 package Cards;
 
-public class Card {
+import com.sun.jdi.IntegerType;
+
+public class Card implements Comparable<Card> {
     private String suit;
     private String rank;
     private int value;
@@ -53,6 +55,11 @@ public class Card {
 
     public String toString(){
         return String.format("%s of %s", rank, suit);
+    }
+
+    @Override
+    public int compareTo(Card o) {
+        return Integer.compare(getValue(), o.getValue());
     }
 }
 

@@ -40,7 +40,7 @@ public class OutputUtils {
     }
 
     public static void printPlayerBar(String playerName) {
-        System.out.printf("\n\n%s's turn\n\n", playerName);
+        System.out.printf("%s's turn\n\n", playerName);
     }
 
     public static void printCurrentHand(String val, boolean redraw) {
@@ -48,6 +48,14 @@ public class OutputUtils {
             System.out.printf("Your new hand: \n%s\n", val);
         } else {
             System.out.printf("Your current hand: \n%s\n", val);
+        }
+    }
+
+    public static void printComputerHand(String val, String compName, boolean redraw) {
+        if (redraw) {
+            System.out.printf("%s's new hand: \n%s\n", compName, val);
+        } else {
+            System.out.printf("%s's current hand: \n%s\n", compName, val);
         }
     }
 

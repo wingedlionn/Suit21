@@ -27,42 +27,61 @@ public class GameLogic {
             do {
                 OutputUtils.printRoundBar(currentRound);
 
+
                 for (Player p : players) {
+
                     OutputUtils.printPlayerBar(p.getName());
-                    OutputUtils.printCurrentHand(p.hand.toString(), false);
-                    OutputUtils.printTotalsPerSuit(p.hand.getCurrentTotals());
 
-                    String selectedCard = InputUtils.getCardSwap();
-                    String removedCard = "";
+                    if (p instanceof PlayerBot) {
+                        OutputUtils.printComputerHand(p.hand.toString(), p.getName(), false);
 
-                    switch (selectedCard.toUpperCase()) {
-                        case "A":
-                            removedCard = p.hand.getCardAtIndex(0).toString();
-                            p.hand.removeCardAtIndex(0);
-                            break;
-                        case "B":
-                            removedCard = p.hand.getCardAtIndex(1).toString();
-                            p.hand.removeCardAtIndex(1);
-                            break;
-                        case "C":
-                            removedCard = p.hand.getCardAtIndex(2).toString();
-                            p.hand.removeCardAtIndex(2);
-                            break;
-                        case "D":
-                            removedCard = p.hand.getCardAtIndex(3).toString();
-                            p.hand.removeCardAtIndex(3);
-                            break;
-                        case "E":
-                            removedCard = p.hand.getCardAtIndex(4).toString();
-                            p.hand.removeCardAtIndex(4);
-                            break;
+                        Card selectedCard = ((PlayerBot) p).playTurn();
+                        int index = p.hand.getIndexOfCard(selectedCard);
+                        p.hand.removeCardAtIndex(index);
+
+                        Card newCard = deck.cards.getFirst();
+                        deck.cards.removeFirst();
+
+                        p.hand.add(newCard);
+
+                        System.out.printf("%s swaps %s for %s\n", p.getName(), selectedCard.toString(), newCard.toString());
+
+                    } else {
+                        OutputUtils.printCurrentHand(p.hand.toString(), false);
+                        OutputUtils.printTotalsPerSuit(p.hand.getCurrentTotals());
+
+                        String selectedCard = InputUtils.getCardSwap();
+                        String removedCard = "";
+
+                        switch (selectedCard.toUpperCase()) {
+                            case "A":
+                                removedCard = p.hand.getCardAtIndex(0).toString();
+                                p.hand.removeCardAtIndex(0);
+                                break;
+                            case "B":
+                                removedCard = p.hand.getCardAtIndex(1).toString();
+                                p.hand.removeCardAtIndex(1);
+                                break;
+                            case "C":
+                                removedCard = p.hand.getCardAtIndex(2).toString();
+                                p.hand.removeCardAtIndex(2);
+                                break;
+                            case "D":
+                                removedCard = p.hand.getCardAtIndex(3).toString();
+                                p.hand.removeCardAtIndex(3);
+                                break;
+                            case "E":
+                                removedCard = p.hand.getCardAtIndex(4).toString();
+                                p.hand.removeCardAtIndex(4);
+                                break;
+                        }
+
+                        System.out.printf("%s has been replaced by the %s.\n", removedCard, deck.cards.getFirst().toString());
+                        p.hand.add(deck.cards.getFirst());
+                        deck.cards.removeFirst();
+                        OutputUtils.printCurrentHand(p.hand.toString(), true);
+                        OutputUtils.printTotalsPerSuit(p.hand.getCurrentTotals());
                     }
-
-                    System.out.printf("%s has been replaced by the %s.\n", removedCard, deck.cards.getFirst().toString());
-                    p.hand.add(deck.cards.getFirst());
-                    deck.cards.removeFirst();
-                    OutputUtils.printCurrentHand(p.hand.toString(), true);
-                    OutputUtils.printTotalsPerSuit(p.hand.getCurrentTotals());
 
 
                     if (checkWinCondition(p)) {
@@ -71,6 +90,7 @@ public class GameLogic {
                         numWinners++;
                     }
 
+                    System.out.println("\nEnd of turn \n\n");
                     InputUtils.awaitInput(true);
                 }
                 currentRound++;
@@ -90,7 +110,7 @@ public class GameLogic {
                 }
                 OutputUtils.congratulateWinners(winners);
             } else {
-                System.out.println("Insufficient cards remaining. No points will be awarded this draw.");
+                System.out.println(".\nGame over\nInsufficient cards remaining to continue the game.\nNo points will be awarded for this game.");
             }
             currentGame++;
         }

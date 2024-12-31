@@ -49,7 +49,7 @@ public class InputUtils {
     public static void awaitInput(boolean message) {
 
         if (message) {
-            System.out.println("Press enter to continue.");
+            System.out.println("Press enter to continue.\n");
         }
         String in = getString();
         if (in.isEmpty()) {
@@ -70,8 +70,19 @@ public class InputUtils {
     public static int getNumPlayers() {
         while (true) {
             int input = getInt();
-            if (input <= 1 || input > 6) {
-                System.out.println("Invalid number of players. Please enter a number between 2 and 6:");
+            if (input < 1 || input > 6) {
+                System.out.println("Invalid number of players. Please enter a number between 1 and 6:");
+            } else {
+                return input;
+            }
+        }
+    }
+
+    public static int getNumBots(int maxBots) {
+        while (true) {
+            int input = getInt();
+            if (input < 1 || input > maxBots) {
+                System.out.printf("Invalid number of bots. Please enter a number between 1 and %d:\n", maxBots);
             } else {
                 return input;
             }
@@ -89,10 +100,35 @@ public class InputUtils {
         }
     }
 
+    public static int getBotDifficulty() {
+        while (true) {
+            int input = getInt();
+            if (input <= 0 || input > 2) {
+                System.out.println("Please select either Easy (1) or Normal (2)");
+            } else {
+                return input;
+            }
+        }
+    }
+
+    public static boolean getBotsPlaying() {
+        while (true) {
+            String input = getString().toLowerCase();
+            if (input.equals("y")) {
+                return true;
+            }
+            if (input.equals("n")) {
+                return false;
+            } else {
+                System.out.println("You must select yes (y) or no (n). Please try again.");
+            }
+        }
+    }
+
     public static boolean getContinuePlaying() {
         System.out.println("Would you like to restart? (y/n)");
         while (true) {
-            String input = getString();
+            String input = getString().toLowerCase();
             if (input.equals("y")) {
                 return true;
             }
