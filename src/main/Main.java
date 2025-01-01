@@ -1,6 +1,8 @@
-import Cards.CardAttributes;
-import Game.*;
-import Utils.*;
+package main;
+
+import main.Cards.CardAttributes;
+import main.Game.*;
+import main.Utils.*;
 
 public class Main {
 
@@ -11,9 +13,6 @@ public class Main {
         int numberOfBots = 0;
         Player[] playerHold = new Player[2];
         Player[] botHold = new Player[2];
-
-
-
 
         OutputUtils.printTitle();
         System.out.println("Welcome!");

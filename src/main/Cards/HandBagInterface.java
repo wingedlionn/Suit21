@@ -1,4 +1,4 @@
-package Cards;
+package main.Cards;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public interface HandBagInterface {
     public ArrayList<Card> getCards();
     /* Returns the cards currently in the hand
 
-    @return - (ArrayList<Card>) Cards currently in the hand
+    @return - (ArrayList<Card>) main.Cards currently in the hand
      */
 
     public boolean isEmpty();

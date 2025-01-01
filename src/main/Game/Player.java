@@ -1,4 +1,4 @@
-package Game;
+package main.Game;
 
 public class Player implements Comparable<Player> {
     private String name;

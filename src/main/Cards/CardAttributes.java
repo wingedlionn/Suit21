@@ -1,4 +1,4 @@
-package Cards;
+package main.Cards;
 
 public class CardAttributes {
     public enum Suit {

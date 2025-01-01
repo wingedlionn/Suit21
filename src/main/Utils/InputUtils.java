@@ -1,9 +1,13 @@
-package Utils;
+package main.Utils;
 
 import java.util.Scanner;
 
 public class InputUtils {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void setScanner(Scanner scanner) {
+        InputUtils.scanner = scanner;
+    }
 
     private static String getString() {
         return scanner.nextLine();
@@ -23,7 +27,7 @@ public class InputUtils {
     public static String getCardSwap() {
         System.out.println("Which card would you like to swap? (A, B, C, D, E)");
         while (true) {
-            String card = getString();
+            String card = getString().trim();
             if (card.isEmpty()) {
                 System.out.println("You must select a card.");
             } else {
@@ -39,18 +43,17 @@ public class InputUtils {
                     case "E":
                         return "E";
                     default:
-                        System.out.println("You must select a card.");
+                        System.out.println("Invalid Selection.");
                         break;
                 }
             }
         }
     }
 
-    public static void awaitInput(boolean message) {
+    public static void awaitInput() {
 
-        if (message) {
-            System.out.println("Press enter to continue.\n");
-        }
+        System.out.println("Press enter to continue.\n");
+
         String in = getString();
         if (in.isEmpty()) {
             return;

@@ -1,10 +1,9 @@
-package Game;
+package main.Game;
 
-import Cards.*;
-import Utils.*;
+import main.Cards.*;
+import main.Utils.*;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class GameLogic {
     public static String[] suits;
@@ -12,18 +11,24 @@ public class GameLogic {
     public static int numberOfGames;
     public static int currentGame = 1;
     public static int currentRound;
+    public static boolean isTestScenario = false;
+    public static Deck deck;
 
-    public static void playGame() {
+    public static boolean playGame() {
         for (int i = 0; i < numberOfGames; i++) {
             OutputUtils.printGameBar(currentGame);
-            Deck deck = new Deck();
             boolean winConditionMet = false;
             int numWinners = 0;
-            for (Player p : players) {
-                p.hand.addHand(deck.dealHand());
+
+            if(!isTestScenario) {
+                deck = new Deck();
+
+                for (Player p : players) {
+                    p.hand.addHand(deck.dealHand());
+                }
             }
 
-            int currentRound = 1;
+            currentRound = 1;
             do {
                 OutputUtils.printRoundBar(currentRound);
 
@@ -91,7 +96,7 @@ public class GameLogic {
                     }
 
                     System.out.println("\nEnd of turn \n\n");
-                    InputUtils.awaitInput(true);
+                    InputUtils.awaitInput();
                 }
                 currentRound++;
             } while (!winConditionMet && deck.cards.size() >= players.length);
@@ -110,13 +115,14 @@ public class GameLogic {
                 }
                 OutputUtils.congratulateWinners(winners);
             } else {
-                System.out.println(".\nGame over\nInsufficient cards remaining to continue the game.\nNo points will be awarded for this game.");
+                System.out.println("\nGame over\nInsufficient cards remaining to continue the game.\nNo points will be awarded for this game.");
             }
             currentGame++;
         }
 
         Arrays.sort(players);
         OutputUtils.printLeaderboard(players);
+        return true;
     }
 
     private static boolean checkWinCondition(Player p) {

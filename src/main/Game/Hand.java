@@ -1,8 +1,8 @@
-package Game;
+package main.Game;
 
-import Cards.Card;
-import Cards.CardAttributes;
-import Cards.HandBagInterface;
+import main.Cards.Card;
+import main.Cards.CardAttributes;
+import main.Cards.HandBagInterface;
 
 import java.util.ArrayList;
 
@@ -39,8 +39,10 @@ public class Hand implements HandBagInterface {
     public boolean addHand(ArrayList<Card> hand) {
         try {
             for (Card card : hand) {
-                cards.add(card);
-                sizeOfHand++;
+                boolean response = add(card);
+                if (!response) {
+                    throw new Exception("Hand full");
+                }
             }
             return true;
         }
@@ -88,17 +90,6 @@ public class Hand implements HandBagInterface {
         }
     }
 
-    public boolean removeCardAtIndex(int index) {
-        try {
-            Card c = getCardAtIndex(index);
-            remove(c);
-            return true;
-        }
-        catch(Exception e) {
-            return false;
-        }
-    }
-
     public boolean remove(Card card) {
         boolean removed = cards.removeIf(c -> c.equals(card));
         if(removed) {
@@ -108,11 +99,28 @@ public class Hand implements HandBagInterface {
         return false;
     }
 
+    public boolean removeCardAtIndex(int index) {
+        try {
+            Card c = getCardAtIndex(index);
+            if(c == null)
+            {
+                throw new Exception();
+            }
+            remove(c);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+
     public int getTotalForSuit(String suit) {
         int count = 0;
+        int aceIndex = -1;
         for(Card card : cards) {
             if(card.getSuit().equals(suit)) {
                 if(card.getRank().equals("Ace")) {
+                    aceIndex = getIndexOfCard(card);
                     int checkVal = count + card.getValue();
                     if ((count >= 21 || checkVal > 21) && card.getValue() == 11) {
                         card.setValue(1);
@@ -123,6 +131,21 @@ public class Hand implements HandBagInterface {
                     }
                 }
                 count += card.getValue();
+            }
+        }
+
+        if(aceIndex != -1) {
+            Card ace = getCardAtIndex(aceIndex);
+            if(ace.getValue() == 11) {
+                if (count - 10 == 21) {
+                    count = count - 10;
+                    cards.get(aceIndex).setValue(1);
+                }
+            } else if(ace.getValue() == 1) {
+                if(count + 10 >= 19) {
+                    count = count + 10;
+                   cards.get(aceIndex).setValue(11);
+                }
             }
         }
         return count;
@@ -143,6 +166,9 @@ public class Hand implements HandBagInterface {
     }
 
     public String toString() {
+        if(getSize() == 0) {
+            return "Empty Hand";
+        }
         Character[] letters = {'A', 'B', 'C', 'D', 'E'};
         String response;
 

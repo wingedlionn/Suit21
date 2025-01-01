@@ -2,7 +2,7 @@
 out/
 .idea/
 Suit21.iml
-Tests/tests.iml
+target/
 !**/src/main/**/out/
 !**/src/test/**/out/
 

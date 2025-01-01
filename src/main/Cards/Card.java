@@ -1,6 +1,4 @@
-package Cards;
-
-import com.sun.jdi.IntegerType;
+package main.Cards;
 
 public class Card implements Comparable<Card> {
     private String suit;

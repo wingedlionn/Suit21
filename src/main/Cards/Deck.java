@@ -1,8 +1,8 @@
-package Cards;
+package main.Cards;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import Cards.CardAttributes.*;
+import main.Cards.CardAttributes.*;
 
 
 public class Deck {
@@ -21,10 +21,6 @@ public class Deck {
             }
         }
 
-        shuffleDeck();
-    }
-
-    private void shuffleDeck() {
         Collections.shuffle(cards);
     }
 

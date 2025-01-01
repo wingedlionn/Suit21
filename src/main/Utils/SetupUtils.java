@@ -1,8 +1,8 @@
-package Utils;
+package main.Utils;
 
-import Game.GameLogic;
-import Game.Player;
-import Game.PlayerBot;
+import main.Game.GameLogic;
+import main.Game.Player;
+import main.Game.PlayerBot;
 
 public class SetupUtils {
 
@@ -19,6 +19,8 @@ public class SetupUtils {
 
     public static void populatePlayers(int totalPlayers, Player[] players, Player[] bots) {
         int counter = 0;
+        GameLogic.players = new Player[totalPlayers];
+
         for(Player p : players) {
             GameLogic.players[counter] = p;
             counter++;
@@ -31,6 +33,8 @@ public class SetupUtils {
 
     public static void populatePlayers(Player[] players) {
         int counter = 0;
+        GameLogic.players = new Player[players.length];
+
         for(Player p : players) {
             GameLogic.players[counter] = p;
             counter++;
@@ -40,12 +44,17 @@ public class SetupUtils {
     public static Player[] getBots(int numberOfPlayers) {
         int numberOfBots;
         int maxBots = 6 - numberOfPlayers;
-        if (maxBots == 1) {
+
+        if (maxBots == 0) {
+            return new Player[0];
+        } else if (maxBots == 1) {
             numberOfBots = 1;
-        } else {
+        }
+        else {
             System.out.printf("How many bots would you like? You can have up to %d bots in this game.\n", maxBots);
             numberOfBots = InputUtils.getNumBots(maxBots);
         }
+
 
         Player[] botHold = new Player[numberOfBots];
 

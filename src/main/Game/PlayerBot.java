@@ -1,6 +1,6 @@
-package Game;
+package main.Game;
 
-import Cards.Card;
+import main.Cards.Card;
 
 import java.util.*;
 
@@ -11,8 +11,12 @@ public class PlayerBot extends Player {
 
     public PlayerBot(String playerName, int difficulty) {
         super(playerName);
+        if(difficulty < 1 || difficulty > 2){
+            difficulty = 1;
+        }
         setDifficulty(difficulty);
     }
+
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
@@ -35,7 +39,7 @@ public class PlayerBot extends Player {
         int closest = 0;
 
         for (Map.Entry<String, List<Card>> entry : cards.entrySet()) {
-            int score = getScoreFromMap(cards);
+            int score = getScoreForSuit(cards, entry.getKey());
 
             if (score > 21) {
                 if(closest < 21) {
@@ -111,11 +115,13 @@ public class PlayerBot extends Player {
         return score;
     }
 
-    private int getScoreFromMap(Map<String, List<Card>> cards) {
+    private int getScoreForSuit(Map<String, List<Card>> cards, String suit) {
         int score = 0;
         for (Map.Entry<String, List<Card>> entry : cards.entrySet()) {
             for (Card card : entry.getValue()) {
-                score += card.getValue();
+                if(card.getSuit().equals(suit)) {
+                    score += card.getValue();
+                }
             }
         }
         return score;
