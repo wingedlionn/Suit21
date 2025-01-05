@@ -51,7 +51,6 @@ public class InputUtils {
     }
 
     public static void awaitInput() {
-
         System.out.println("Press enter to continue.\n");
 
         String in = getString();

@@ -4,12 +4,9 @@ import main.Cards.CardAttributes;
 import main.Game.GameLogic;
 import main.Game.Player;
 import main.Utils.OutputUtils;
-import main.Utils.SetupUtils;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 
