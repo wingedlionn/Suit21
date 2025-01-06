@@ -18,6 +18,7 @@ public class Main {
         System.out.println("Welcome!");
 
         while (playing) {
+            GameLogic.currentRound = 1;
             System.out.println("How many players do you have?\nYou must select a number between 1 and 6:");
             numberOfPlayers = InputUtils.getNumPlayers();
 
